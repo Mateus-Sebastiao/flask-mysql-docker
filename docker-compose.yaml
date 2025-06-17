@@ -1,0 +1,35 @@
+services:
+  db:
+    image: mysql:8
+    container_name: db-app
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DB}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    networks:
+      - flask-net
+    
+  app:
+    image: app:latest
+    container_name: app
+    environment:
+      MYSQL_HOST: ${MYSQL_HOST}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DB: ${MYSQL_DB}
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
+    networks:
+      - flask-net
+
+volumes:
+  db-data:
+    name: app-database
+
+networks:
+  flask-net: {}
