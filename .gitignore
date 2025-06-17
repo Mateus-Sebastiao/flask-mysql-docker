@@ -1,4 +1,4 @@
-# Bytecode Python
 __pycache__/
-*.py[cod]
-*.pyo
+*.pyc
+.env
+db-data/
