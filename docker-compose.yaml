@@ -10,9 +10,12 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     networks:
-      - flask-net
+      - app
     
   app:
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: app:latest
     container_name: app
     environment:
@@ -20,16 +23,28 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DB: ${MYSQL_DB}
-    ports:
-      - 5000:5000
     depends_on:
       - db
     networks:
-      - flask-net
+      - app
+
+  web:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    image: web-app:latest
+    container_name: web-app
+    ports:
+    - 8080:80
+    depends_on:
+      - app
+    networks:
+      - app
 
 volumes:
   db-data:
     name: app-database
 
 networks:
-  flask-net: {}
+  app:
+    name: flask-network-app
