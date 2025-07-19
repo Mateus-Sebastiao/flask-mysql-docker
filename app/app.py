@@ -99,7 +99,7 @@ def register():
             name=form.name.data,
             email=form.email.data,
             username=form.username.data,
-            password=sha256_crypt.encrypt(str(form.password.data))
+            password=sha256_crypt.hash(str(form.password.data))
         )
         db.session.add(user)
         db.session.commit()
