@@ -17,7 +17,6 @@ COPY ./app/requirements.txt .
 
 RUN pip install --no-cache-dir --prefix=/install/packages -r requirements.txt
 
-
 # Segundo estágio
 FROM python:3.11-slim
 
@@ -32,10 +31,7 @@ RUN apt-get update && apt-get install -y \
 COPY --from=builder /install/packages /usr/local
 
 COPY ./app/ .
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-
-RUN chmod +x /usr/local/bin/entrypoint.sh
 
 EXPOSE 5000
 
-ENTRYPOINT ["entrypoint.sh"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]

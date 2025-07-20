@@ -15,29 +15,21 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
-    image: app:latest
-    container_name: app
+      dockerfile: Dockerfile.dev
+    image: myflask-app:latest
+    container_name: myflask-app
+    ports:
+      - "5000:5000"
     environment:
+      FLASK_APP: ${FLASK_APP}
+      FLASK_ENV: ${FLASK_ENV}
       MYSQL_HOST: ${MYSQL_HOST}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DB: ${MYSQL_DB}
+      MYSQL_PORT: ${MYSQL_PORT}
     depends_on:
       - db
-    networks:
-      - app
-
-  web:
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile
-    image: web-app:latest
-    container_name: web-app
-    ports:
-    - 8080:80
-    depends_on:
-      - app
     networks:
       - app
 
