@@ -1,0 +1,9 @@
+cryptography==45.0.5
+flask==3.0.3
+Flask-Migrate==4.1.0
+flask-sqlalchemy==3.1.1
+passlib==1.7.4
+PyMySQL==1.1.1
+python-dotenv==1.0.1
+wtforms==3.1.2
+gunicorn

@@ -13,9 +13,9 @@ RUN apt-get update && apt-get install -y \
     libssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
-COPY ./app/requirements.txt .
+COPY ./app/requirements.prod.txt .
 
-RUN pip install --no-cache-dir --prefix=/install/packages -r requirements.txt
+RUN pip install --no-cache-dir --prefix=/install/packages -r requirements.prod.txt
 
 # Segundo estágio
 FROM python:3.11-slim
