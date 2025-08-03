@@ -17,6 +17,6 @@ python app.py
 
 ***
 
-## Adicionando script `create_tables.sql`
+## Aditional Information
 
-Ao criar as imagens e colocar a rodar a app via containers, eu precisava que as tabelas fossem criadas logo ao inicializar os containers, então o script `create_tables.sql` adicionado aqui faz esse trabalho. Essa é uma dica rápida sobre o surgimento desse script.
+Migrated the backend for use of SQLAlchemy (ORM) with good development practices.
