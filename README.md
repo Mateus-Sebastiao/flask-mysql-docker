@@ -47,6 +47,6 @@ docker run -p 5000:5000 --name myflask-app myflask-prod
 Fazendo push para o `registry`:
 
 ```bash
-docker tag myflask-prod <como-necessario-para-o-registry>
+docker tag myflask-prod:latest <como-necessario-para-o-registry>:<conforme-necessario>
 ```
 
